@@ -1,0 +1,10 @@
+JAR包执行方式说明
+
+说明：本次实验我们把两个个功能分别打包成两个jar包，通过指定主类选择功能。
+
+统计所在国家标识符相同所有客户的账户余额
+hadoop jar CustomerNationBalanceSum.jar CustomerNationBalanceSum /data/lab3/task1/customer.tbl lab3_task1
+
+统计相同订单优先级的订单中订单发货优先级最高的订单信息
+hadoop jar ShipmentTask2.jar ShipmentTask2 test3-2.tbl output_lab3-2
+（*注 test3-2.tbl 是/data/lab3/task2/orders.tbl ）

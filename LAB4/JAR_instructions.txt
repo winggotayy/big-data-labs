@@ -1,0 +1,3 @@
+JAR包执行方式说明
+
+hadoop jar KMeans.jar KMeans /data/exp4/dataset.data /Lab4-op /data/exp4/initial_centers.data

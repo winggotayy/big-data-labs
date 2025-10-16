@@ -76,3 +76,16 @@ ROW FORMAT DELIMITED
 FIELDS TERMINATED BY ' ' 
 LOCATION '/user/hc01/output/';
 ```
+
+## LAB 4: K-Means Clustering with Hadoop MapReduce
+Implemented the **K-Means clustering algorithm** using the **Hadoop MapReduce** framework to process large-scale vector datasets stored in **HDFS**.  
+Each MapReduce iteration recalculates new centroids until convergence, outputting 20 final cluster centers.
+
+### 🔧 Implementation
+Each iteration runs as a **MapReduce job**, controlled by a driver program until centroids stabilize.  
+- **Mapper:**  
+  - Reads data points  
+  - Assigns each point to the nearest centroid based on Euclidean distance  
+- **Reducer:**  
+  - Aggregates all points per cluster  
+  - Recomputes new centroids

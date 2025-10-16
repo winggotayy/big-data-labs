@@ -31,6 +31,48 @@ Implemented an inverted index system using Hadoop MapReduce with extended sortin
 - Formula: IDF = log10(total_docs / (docs_with_term + 1))
 - Output: <document, term, TF-IDF value>
 
-
 Notes
 - All Java tasks are executed as Hadoop MapReduce jobs, packaged as JARs.
+
+## LAB 3: Group By Aggregation with Hadoop MapReduce & Hive Integration
+Implemented SQL-like Group By operations using Hadoop MapReduce, followed by Hive table integration for query management on distributed datasets stored in HDFS.
+
+### Task 1: Customer Data Aggregation
+- Implemented MapReduce job to calculate the total account balance grouped by customer nation key.
+- Equivalent SQL:
+```sql
+SELECT c_nationkey, SUM(c_acctbal)
+FROM customer
+GROUP BY c_nationkey;
+```
+- Output: <c_nationkey, sum(c_acctbal)>
+
+### Task 2: Order Priority Analysis
+- Implemented MapReduce job to find orders with the highest shipping priority within each order priority group.
+- Equivalent SQL:
+```sql
+SELECT orderkey, orderpriority, MAX(shippriority)
+FROM orders
+GROUP BY orderpriority;
+```
+- Output: <order_key, order_priority, max(ship_priority)>
+
+### 💾 Data & Hive Integration
+
+**Input Datasets:**
+- `/data/lab3/task1/customer.tbl`
+- `/data/lab3/task2/orders.tbl`
+
+**Output:**
+Stored in HDFS under `/user/hc01/output/`
+
+**Integrated results into Hive tables using:**
+```sql
+CREATE TABLE task1_res (
+  c_nationkey STRING, 
+  c_acctbal_sum STRING
+)
+ROW FORMAT DELIMITED 
+FIELDS TERMINATED BY ' ' 
+LOCATION '/user/hc01/output/';
+```
